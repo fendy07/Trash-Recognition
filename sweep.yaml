@@ -1,30 +1,22 @@
 program: train.py
-project: Trash-recognition
-entity: journeywithfendy
-method: random
+method: bayes
 metric:
-  name: val_f1
-  goal: maximize
-
-
+  goal: minimize
+  name: Relative Time (Process)
 parameters:
-    seed:
-      values: [1, 2]
-    img_size:
-      values: [128, 224, 512]
-    batch_size:
-      values: [16, 32, 64, 128, 256]
-    lr:
-      distribution: log_uniform_values
-      min: 1e-5
-      max: 1e-2
-    arch:
-      values: [resnet, densenet, mobilenet]
-    dropout_rate:
-      distribution: uniform
-      min: 0
-      max: 0.5
-    fc_neurons: 
-      distribution: int_uniform
-      min: 32
-      max: 512
+  learning_rate:
+    max: 0.0002
+    min: 0.00005
+    distribution: uniform
+  num_classes:
+    max: 12
+    min: 3
+    distribution: int_uniform
+  in_channels:
+    max: 6
+    min: 2
+    distribution: int_uniform
+  batch_size:
+    max: 64
+    min: 16
+    distribution: int_uniform
